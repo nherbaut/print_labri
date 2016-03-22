@@ -4,19 +4,19 @@ INSTALLATION
 make sure that your public key file is installed in ssh.labri.fr, so that you can log without password
 
 copy the print_labri.sh file in your home folder, then create an alias:
-
+```
 %> echo "alias pl="~/print_labri.sh" >> ~/.bashrc
-
+```
 source the alias file, and start using pl
-
+```
 %> source ~/.bashrc
-
+```
 
 USAGE
 =====
 
 print labri, will query the available printers, then let you pick a pdf file from the file in the current folder.
-
+```
 %> pl
 
  1) bowser		 11) gnocchi-2-per-sheet  21) okinawa
@@ -34,6 +34,6 @@ Please select a printer: 15
  1) ./node-capacities114613154.pdf	2) ./transfo114613155.pdf
  3) ./transfo1.pdf			4) Quit
 Please select a file: 2
-
+```
 
 
