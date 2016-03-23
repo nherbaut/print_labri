@@ -40,6 +40,7 @@ Please select a file: 2
 CREDITS
 =======
 
-Many thanks to @Jobq for its initial inputs on this.
+* Many thanks to @Jobq for its initial inputs on this.
+* Many thanks to @fgrelard  for his support.
 
 
