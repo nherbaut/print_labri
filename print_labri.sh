@@ -50,12 +50,12 @@ select twosided in "${options[@]}" "Quit" ; do
         echo "file copied"
         echo "printing launched"
         if [ "$twosided" = "Y" ]; then
-			ssh -o "BatchMode yes" ssh.labri.fr "lpr -P $opt $file -o media=A4 -o sides=two-sided-long-edge"
+			ssh -o "BatchMode yes" ssh.labri.fr "lpr -P $opt '$file' -o media=A4 -o sides=two-sided-long-edge"
 		else
-			ssh -o "BatchMode yes" ssh.labri.fr "lpr -P $opt $file -o media=A4"
+			ssh -o "BatchMode yes" ssh.labri.fr "lpr -P $opt '$file' -o media=A4"
 		fi
 			echo "File removed from remote server. Now go get your dead trees."
-			ssh -o "BatchMode yes" ssh.labri.fr "rm $file"
+			ssh -o "BatchMode yes" ssh.labri.fr "rm '$file'"
         break
 
     else
