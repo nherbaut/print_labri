@@ -1,7 +1,8 @@
 #!/bin/bash
 LABRI_SERVER=ssh.labri.fr
+USER=dbourass
 prompt="Please select a printer:"
-options=( $(ssh -o "BatchMode yes" ssh.labri.fr 'lpstat -p -d|sed -rn "s/printer ([^ ]*) .*$/\1/p"|uniq') )
+options=( $(ssh -o "BatchMode yes" $USER@$LABRI_SERVER 'lpstat -p -d|sed -rn "s/printer ([^ ]*) .*$/\1/p"|uniq') )
 
 PS3="$prompt "
 select opt in "${options[@]}" "Quit" ; do 
@@ -46,16 +47,16 @@ select twosided in "${options[@]}" "Quit" ; do
 
     elif (( REPLY > 0 && REPLY <= ${#options[@]} )) ; then
 		echo "file is beeing copied to remote server"
-        scp -q $file $LABRI_SERVER:. 
+        scp -q $file $USER@$LABRI_SERVER:. 
         echo "file copied"
         echo "printing launched"
         if [ "$twosided" = "Y" ]; then
-			ssh -o "BatchMode yes" ssh.labri.fr "lpr -P $opt '$file' -o media=A4 -o sides=two-sided-long-edge"
+			ssh -o "BatchMode yes" $USER@$LABRI_SERVER "lpr -P $opt '$file' -o media=A4 -o sides=two-sided-long-edge"
 		else
-			ssh -o "BatchMode yes" ssh.labri.fr "lpr -P $opt '$file' -o media=A4"
+			ssh -o "BatchMode yes" $USER@$LABRI_SERVER "lpr -P $opt '$file' -o media=A4"
 		fi
 			echo "File removed from remote server. Now go get your dead trees."
-			ssh -o "BatchMode yes" ssh.labri.fr "rm '$file'"
+			ssh -o "BatchMode yes" $USER@$LABRI_SERVER "rm '$file'"
         break
 
     else
